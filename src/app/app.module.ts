@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChildHomeComponent } from './home/child-home/child-home.component';
+import { ArticlesModule } from './articles/articles.module';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ChildHomeComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, HomeComponent],
+  imports: [BrowserModule, ArticlesModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
