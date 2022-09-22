@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChildHomeComponent } from './home/child-home/child-home.component';
+import { environment } from 'src/environments/environment';
+import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
+import { ArticlesGuard } from './guards/articles.guard';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
-    children: [{ path: 'child', component: ChildHomeComponent }],
+  },
+  {
+    path: 'articles',
+    loadChildren: () =>
+      import('./articles/articles.module').then((m) => m.ArticlesModule),
+    canLoad: [ArticlesGuard],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { enableTracing: !environment.production }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
