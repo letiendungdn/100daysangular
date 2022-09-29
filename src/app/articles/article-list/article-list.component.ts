@@ -19,6 +19,11 @@ import { Router } from '@angular/router';
         (click)="onReadMoreClick(article.slug)"
         >Read more</a
       >
+      <a
+        style="cursor: pointer; text-decoration: underline;margin-left: 1rem"
+        (click)="onEditClick(article.slug)"
+        >Edit</a
+      >
     </li>
   </ul>`,
 })
@@ -36,5 +41,13 @@ export class ArticleListComponent implements OnInit {
 
   onReadMoreClick(slug: string): void {
     this.router.navigate(['/articles', slug]);
+  }
+
+  onEditClick(slug: string): void {
+    this.router.navigate(['/articles', slug, 'edit']);
+  }
+
+  checkDeactivated() {
+    return true;
   }
 }

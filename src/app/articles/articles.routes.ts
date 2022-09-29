@@ -11,7 +11,11 @@ export const articlesRoutes: Routes = [
     canActivateChild: [ArticlesGuard],
     children: [
       { path: '', component: ArticleDetailComponent },
-      { path: '', component: ArticleDetailEditComponent },
+      {
+        path: 'edit',
+        component: ArticleDetailEditComponent,
+        canActivateChild: [ArticlesGuard],
+      },
     ],
   }, // article/:slug
 ];
