@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { shareReplay, map } from 'rxjs/operators';
 import { Article } from '../models/article';
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +21,7 @@ export class ArticleService {
     ]).pipe(shareReplay(1));
   }
 
-  getArticle(slug: string): Observable<Article | undefined> {
+  getArticle(slug: string): Observable<Article> {
     return this.articles$.pipe(
       map((article) => article.find((ar) => ar.slug === slug))
     );
